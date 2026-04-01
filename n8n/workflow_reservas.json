@@ -1,0 +1,197 @@
+{
+  "name": "La.Cupula - Agente Reservas WhatsApp",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "whatsapp-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-whatsapp",
+      "name": "Webhook WhatsApp (Twilio)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer mensaje entrante de Twilio WhatsApp\nconst body = $input.first().json.body;\nconst from = body.From || '';\nconst msgBody = body.Body || '';\nconst phone = from.replace('whatsapp:', '');\n\nreturn [{\n  json: {\n    phone: phone,\n    message: msgBody,\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "parse-message",
+      "name": "Parsear Mensaje",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Eres el asistente virtual de Restaurante La.Cúpula en Redován, Alicante. Eres amable, profesional y hablas en español. Tu función es:\n\n1. Gestionar reservas de mesa\n2. Informar sobre el restaurante\n\nINFORMACIÓN DEL RESTAURANTE:\n- Nombre: Restaurante La.Cúpula\n- Dirección: C. San Jerónimo, 18, 03370 Redován, Alicante\n- Teléfono: 622 47 44 46\n- Horario: Lunes a Domingo, 13:00-17:00 (noches bajo reserva previa)\n- Precio medio: 20-30€ por persona\n- Menú del día: 16€\n- Instagram: @la.cupularedovan\n- Platos estrella: Torrija, Tarta de Queso, Tarta de Nutella, Tartar de Atún Rojo, Ensaladillas, Hamburguesa, Croquetas, Arroz a Banda, Panza de Cerdo\n- Valoración Google: 4,7/5 con 353 reseñas\n\nPARA RESERVAS necesitas:\n1. Nombre completo\n2. Fecha deseada (DD/MM/AAAA)\n3. Hora (entre 13:00 y 16:00)\n4. Número de personas\n5. Teléfono de contacto (ya lo tienes del WhatsApp)\n6. Si tienen alguna alergia o requerimiento especial\n\nCuando tengas TODOS estos datos, responde con el JSON exacto al final:\n[RESERVA_COMPLETA:{\"nombre\":\"...\",\"fecha\":\"...\",\"hora\":\"...\",\"personas\":N,\"telefono\":\"...\",\"notas\":\"...\"}]\n\nSi el mensaje es solo una consulta de información, respóndela directamente sin pedir datos de reserva. Sé breve y cercano. Usa emojis ocasionalmente 😊"
+            },
+            {
+              "role": "user",
+              "content": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7,
+          "maxTokens": 500
+        }
+      },
+      "id": "openai-agent",
+      "name": "Agente IA (GPT-4o-mini)",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1,
+      "position": [680, 300],
+      "credentials": {
+        "openAiApi": {
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Detectar si hay una reserva completa en la respuesta\nconst aiResponse = $input.first().json.message.content || '';\nconst match = aiResponse.match(/\\[RESERVA_COMPLETA:(\\{.*?\\})]/);\n\nlet reservaData = null;\nlet cleanResponse = aiResponse.replace(/\\[RESERVA_COMPLETA:.*?\\]/, '').trim();\n\nif (match) {\n  try {\n    reservaData = JSON.parse(match[1]);\n  } catch(e) {\n    reservaData = null;\n  }\n}\n\nreturn [{\n  json: {\n    response: cleanResponse,\n    hasBooking: reservaData !== null,\n    bookingData: reservaData,\n    phone: $('Parsear Mensaje').first().json.phone\n  }\n}];"
+      },
+      "id": "check-booking",
+      "name": "¿Reserva completa?",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasBooking }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "if-booking",
+      "name": "¿Hay reserva?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "value": "TU_GOOGLE_SHEET_ID_AQUI"
+        },
+        "sheetName": "Reservas",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha_Solicitud": "={{ $now.toISO() }}",
+            "Nombre": "={{ $json.bookingData.nombre }}",
+            "Fecha_Reserva": "={{ $json.bookingData.fecha }}",
+            "Hora": "={{ $json.bookingData.hora }}",
+            "Personas": "={{ $json.bookingData.personas }}",
+            "Telefono": "={{ $json.bookingData.telefono }}",
+            "Notas": "={{ $json.bookingData.notas }}",
+            "Estado": "Pendiente confirmación"
+          }
+        }
+      },
+      "id": "save-booking",
+      "name": "Guardar en Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1340, 200],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendMessage",
+        "to": "={{ $('¿Hay reserva?').first().json.phone }}",
+        "from": "whatsapp:+TU_NUMERO_TWILIO",
+        "body": "={{ $('¿Hay reserva?').first().json.response }}\n\n✅ *Reserva registrada*\nLe confirmaremos en breve por este mismo número. ¡Hasta pronto! 🍽️"
+      },
+      "id": "send-whatsapp-booking",
+      "name": "Responder WhatsApp (con reserva)",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [1560, 200],
+      "credentials": {
+        "twilioApi": {
+          "name": "Twilio API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendMessage",
+        "to": "={{ $json.phone }}",
+        "from": "whatsapp:+TU_NUMERO_TWILIO",
+        "body": "={{ $json.response }}"
+      },
+      "id": "send-whatsapp-info",
+      "name": "Responder WhatsApp (info)",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [1340, 420],
+      "credentials": {
+        "twilioApi": {
+          "name": "Twilio API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response></Response>"
+      },
+      "id": "webhook-response",
+      "name": "Respuesta Webhook OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1780, 300]
+    }
+  ],
+  "connections": {
+    "Webhook WhatsApp (Twilio)": {
+      "main": [[{"node": "Parsear Mensaje", "type": "main", "index": 0}]]
+    },
+    "Parsear Mensaje": {
+      "main": [[{"node": "Agente IA (GPT-4o-mini)", "type": "main", "index": 0}]]
+    },
+    "Agente IA (GPT-4o-mini)": {
+      "main": [[{"node": "¿Reserva completa?", "type": "main", "index": 0}]]
+    },
+    "¿Reserva completa?": {
+      "main": [[{"node": "¿Hay reserva?", "type": "main", "index": 0}]]
+    },
+    "¿Hay reserva?": {
+      "main": [
+        [{"node": "Guardar en Google Sheets", "type": "main", "index": 0}],
+        [{"node": "Responder WhatsApp (info)", "type": "main", "index": 0}]
+      ]
+    },
+    "Guardar en Google Sheets": {
+      "main": [[{"node": "Responder WhatsApp (con reserva)", "type": "main", "index": 0}]]
+    },
+    "Responder WhatsApp (con reserva)": {
+      "main": [[{"node": "Respuesta Webhook OK", "type": "main", "index": 0}]]
+    },
+    "Responder WhatsApp (info)": {
+      "main": [[{"node": "Respuesta Webhook OK", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

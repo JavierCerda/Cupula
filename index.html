@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurante La.Cúpula — Redován, Alicante</title>
+  <meta name="description"
+    content="Restaurante La.Cúpula en Redován, Alicante. Cocina creativa de autor. Reservas: 622 47 44 46." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">
+        <img src="assets/images/logo.jpg" alt="La.Cúpula logo" class="nav__logo-img" />
+        <span class="nav__logo-text">La.Cúpula</span>
+      </a>
+      <button class="nav__burger" id="navBurger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#nosotros" class="nav__link">Nosotros</a></li>
+        <li><a href="#carta" class="nav__link">Carta</a></li>
+        <li><a href="#galeria" class="nav__link">Galería</a></li>
+        <li><a href="#resenas" class="nav__link">Reseñas</a></li>
+        <li><a href="#contacto" class="nav__link">Contacto</a></li>
+        <li><a href="tel:622474446" class="nav__cta">Reservar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__bg-pattern"></div>
+    <div class="hero__content">
+      <div class="hero__line hero__line--top"></div>
+      <p class="hero__eyebrow">Redován · Alicante</p>
+      <h1 class="hero__title">Una experiencia<br /><em>gastronómica</em><br />única</h1>
+      <div class="hero__divider"></div>
+      <p class="hero__sub">Cocina creativa de autor con los mejores productos<br class="hero__br"> de la huerta
+        valenciana</p>
+      <div class="hero__actions">
+        <a href="tel:622474446" class="btn btn--primary" id="heroReservaBtn">Reservar mesa</a>
+        <a href="#carta" class="btn btn--ghost">Ver la carta</a>
+      </div>
+    </div>
+    <div class="hero__scroll"><span>Descubrir</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section class="nosotros section" id="nosotros">
+    <div class="container nosotros__grid">
+      <div class="nosotros__text">
+        <span class="section__tag reveal">Nuestra historia</span>
+        <h2 class="section__title reveal">Un rincón con <em>encanto</em><br />en pleno Redován</h2>
+        <p class="nosotros__p reveal">La.Cúpula nació con un sueño: llevar la alta cocina creativa a un espacio íntimo y
+          acogedor. Cada plato es una obra de autor, elaborada con productos de temporada seleccionados con mimo y
+          técnica de vanguardia.</p>
+        <p class="nosotros__p reveal">A solo unos minutos de Orihuela, somos el destino favorito de quienes buscan una
+          experiencia gastronómica que va más allá de comer bien. Somos cocina de emoción.</p>
+        <div class="nosotros__stats reveal">
+          <div class="stat"><span class="stat__num">4,7<em>★</em></span><span class="stat__label">Google Maps</span>
+          </div>
+          <div class="stat"><span class="stat__num">353</span><span class="stat__label">Reseñas</span></div>
+          <div class="stat"><span class="stat__num">20-30€</span><span class="stat__label">Por persona</span></div>
+        </div>
+      </div>
+      <div class="nosotros__image reveal">
+        <img src="assets/images/img2.jpg" alt="Interior de Restaurante La.Cúpula" loading="lazy" />
+        <div class="nosotros__badge"><span>Desde</span><strong>2019</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTA -->
+  <section class="carta section section--dark" id="carta">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__tag section__tag--light">Gastronomía</span>
+        <h2 class="section__title section__title--light">Platos <em>destacados</em></h2>
+        <p class="section__subtitle">Una selección de nuestras creaciones más celebradas</p>
+      </div>
+      <div class="carta__grid">
+        <div class="plato reveal">
+          <div class="plato__img-wrap"><img src="assets/images/img1.jpg" alt="Hamburguesa" loading="lazy" /></div>
+          <div class="plato__info">
+            <h3>Hamburguesa</h3>
+            <p>Se nos está haciendo la boca agua 🤤 solo con ver esta hamburguesa 🍔<br /><br />😧 ¿Somos los únicos a
+              los que nos pasa?</p>
+            <span class="plato__tag">Signature · Imprescindible</span>
+          </div>
+        </div>
+        <div class="plato reveal">
+          <div class="plato__img-wrap"><img src="assets/images/img4.jpg" alt="Tarta de Nutella" loading="lazy" /></div>
+          <div class="plato__info">
+            <h3>Tarta de Nutella</h3>
+            <p>¿Quién dijo que los postres eran solo para el fin de semana 🍰? Porque quien lo dijera, se equivocaba
+              🚫<br /><br />Disfruta de nuestra Tarta de Nutella 🍫 en el menú diario y date un capricho de lo más dulce
+              😋</p>
+            <span class="plato__tag">Postre · Menú diario</span>
+          </div>
+        </div>
+        <div class="plato reveal">
+          <div class="plato__img-wrap"><img src="assets/images/img5.jpg" alt="Ensaladillas" loading="lazy" /></div>
+          <div class="plato__info">
+            <h3>Nuestras Ensaladillas</h3>
+            <p>Si no sabes qué ensaladilla pedir, ¿por qué no las dos ✌🏻? Disfruta de la Ensaladilla de Rape y Merluza
+              🐟 con gambón 🦐 y pilpil, y la Ensaladilla Rusa con crema de piquillo 🤤<br /><br />Solo faltan unas
+              rosquillas 🥨 y ¡a comer 😋!</p>
+            <span class="plato__tag">Entrante · Clásico</span>
+          </div>
+        </div>
+        <div class="plato reveal">
+          <div class="plato__img-wrap"><img src="assets/images/img7.jpg" alt="Tartar de Atún Rojo" loading="lazy" />
+          </div>
+          <div class="plato__info">
+            <h3>Tartar de Atún Rojo</h3>
+            <p>🍽️ Saborea el placer del Tartar de Atún Rojo con Carpaccio de Ijada, Cordón de Aguacate Asado y Fumet
+              🐟🥑<br /><br />Una combinación perfecta de sabores frescos y texturas irresistibles 🤤 ¡No te lo pierdas!
+              🔥🌿</p>
+            <span class="plato__tag">Segundo · Estrella del mar</span>
+          </div>
+        </div>
+      </div>
+      <div class="carta__cta reveal">
+        <p>¿Tienes alguna alergia o intolerancia? Consúltanos al reservar.</p>
+        <a href="tel:622474446" class="btn btn--primary">Llamar para reservar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="galeria section" id="galeria">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__tag">Imágenes</span>
+        <h2 class="section__title">La.Cúpula en <em>imágenes</em></h2>
+      </div>
+      <div class="galeria__grid reveal">
+        <div class="galeria__item galeria__item--tall"><img src="assets/images/img3.jpg" alt="Gastronomía"
+            loading="lazy" /></div>
+        <div class="galeria__item"><img src="assets/images/img1.jpg" alt="Plato" loading="lazy" /></div>
+        <div class="galeria__item"><img src="assets/images/img4.jpg" alt="Panza de cerdo" loading="lazy" /></div>
+        <div class="galeria__item galeria__item--wide"><img src="assets/images/img6.jpg" alt="Ambiente"
+            loading="lazy" /></div>
+        <div class="galeria__item"><img src="assets/images/img2.jpg" alt="Interior" loading="lazy" /></div>
+        <div class="galeria__item"><img src="assets/images/img5.jpg" alt="Tarta de queso" loading="lazy" /></div>
+      </div>
+      <div class="galeria__ig reveal">
+        <a href="https://www.instagram.com/la.cupularedovan/" target="_blank" rel="noopener" class="ig-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+          </svg>
+          Síguenos: @la.cupularedovan
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="resenas section section--cream" id="resenas">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__tag">Opiniones</span>
+        <h2 class="section__title">Lo que dicen<br /><em>nuestros clientes</em></h2>
+        <div class="resenas__rating">
+          <div class="stars">★★★★★</div><span>4,7 · 353 reseñas en Google</span>
+        </div>
+      </div>
+      <div class="resenas__carousel" id="resenasCarousel">
+        <div class="resenas__track" id="resenasTrack">
+          <div class="resena">
+            <div class="resena__stars">★★★★★</div>
+            <p class="resena__text">"Jamás imaginábamos encontrar un rinconcito con este encanto en pleno Redován. Una
+              cocina de estrella Michelin como poco y un servicio de 20."</p>
+            <div class="resena__author">
+              <div class="resena__avatar">T</div>
+              <div><strong>Tamara</strong><span>Local Guide · Hace 3 semanas</span></div>
+            </div>
+          </div>
+          <div class="resena">
+            <div class="resena__stars">★★★★★</div>
+            <p class="resena__text">"Bonito local a pocos minutos de Orihuela. Buena relación calidad-precio. Excelente
+              oferta gastronómica. Más que sorprendidos con cada plato seleccionado."</p>
+            <div class="resena__author">
+              <div class="resena__avatar">M</div>
+              <div><strong>Manuel Daza</strong><span>Local Guide · 119 reseñas</span></div>
+            </div>
+          </div>
+          <div class="resena">
+            <div class="resena__stars">★★★★★</div>
+            <p class="resena__text">"Comida espectacular y de gran calidad. El menú del día por 16€ hace que hasta
+              parezca barato por la calidad ofrecida."</p>
+            <div class="resena__author">
+              <div class="resena__avatar">P</div>
+              <div><strong>P. C.</strong><span>Local Guide · Hace 5 meses</span></div>
+            </div>
+          </div>
+          <div class="resena">
+            <div class="resena__stars">★★★★★</div>
+            <p class="resena__text">"La comida exquisita, trato estupendo, sitio pequeño pero acogedor. De los
+              restaurantes que tienes claro que quieres volver."</p>
+            <div class="resena__author">
+              <div class="resena__avatar">C</div>
+              <div><strong>Cliente Google</strong><span>Google Maps</span></div>
+            </div>
+          </div>
+          <div class="resena">
+            <div class="resena__stars">★★★★★</div>
+            <p class="resena__text">"Las mejores croquetas, arroz a banda... y de postre la mejor Torrija del mundo!!!"
+            </p>
+            <div class="resena__author">
+              <div class="resena__avatar">A</div>
+              <div><strong>Ana M.</strong><span>Google Maps</span></div>
+            </div>
+          </div>
+          <div class="resena">
+            <div class="resena__stars">★★★★★</div>
+            <p class="resena__text">"Secreto con una estupenda salsa, lasaña de pisto, tarta de zanahoria y tiramisú.
+              Todo excepcional. Sin duda volveremos."</p>
+            <div class="resena__author">
+              <div class="resena__avatar">R</div>
+              <div><strong>Roberto S.</strong><span>Google Maps</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="resenas__controls reveal">
+        <button class="resenas__btn" id="resenaPrev">&#8592;</button>
+        <div class="resenas__dots" id="resenasDots"></div>
+        <button class="resenas__btn" id="resenaNext">&#8594;</button>
+      </div>
+      <div class="resenas__google reveal">
+        <a href="https://www.google.com/maps/place/Restaurante+La.C%C3%BApula/@38.1142925,-0.9100984" target="_blank"
+          rel="noopener" class="btn btn--outline">Ver todas las reseñas en Google</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto section" id="contacto">
+    <div class="container contacto__grid">
+      <div class="contacto__info">
+        <span class="section__tag reveal">Encuéntranos</span>
+        <h2 class="section__title reveal">Ven a <em>visitarnos</em></h2>
+        <div class="contacto__items">
+          <div class="contacto__item reveal">
+            <div class="contacto__icon">📍</div>
+            <div><strong>Dirección</strong>
+              <p>C. San Jerónimo, 18<br />03370 Redován, Alicante</p>
+            </div>
+          </div>
+          <div class="contacto__item reveal">
+            <div class="contacto__icon">📞</div>
+            <div><strong>Teléfono</strong>
+              <p><a href="tel:622474446">622 47 44 46</a></p>
+            </div>
+          </div>
+          <div class="contacto__item reveal">
+            <div class="contacto__icon">🕐</div>
+            <div><strong>Horario</strong>
+              <p>Lunes a Domingo · 13:00 – 17:00<br /><em>Noches bajo reserva</em></p>
+            </div>
+          </div>
+          <div class="contacto__item reveal">
+            <div class="contacto__icon">💶</div>
+            <div><strong>Precio medio</strong>
+              <p>20 – 30 € por persona<br />Menú del día desde 16 €</p>
+            </div>
+          </div>
+        </div>
+        <div class="contacto__social reveal">
+          <a href="https://www.instagram.com/la.cupularedovan/" target="_blank" rel="noopener" class="social-link"
+            aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+            </svg>
+          </a>
+          <a href="https://wa.me/34622474446" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="contacto__map reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d862.6547917!2d-0.9075235!3d38.1142883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63990d5f95bd01%3A0xa5fc3f7ccd348cc8!2sRestaurante%20La.C%C3%BApula!5e0!3m2!1ses!2ses!4v1711369200000!5m2!1ses!2ses"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+          title="Mapa Restaurante La.Cúpula"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAB -->
+  <a href="tel:622474446" class="fab" id="fab" aria-label="Reservar">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+      <path
+        d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
+    </svg>
+    <span>Reservar</span>
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/images/logo.jpg" alt="La.Cúpula" class="footer__logo" />
+        <span>La.Cúpula</span>
+      </div>
+      <p class="footer__copy">© 2025 Restaurante La.Cúpula · C. San Jerónimo, 18 · Redován, Alicante</p>
+      <div class="footer__links">
+        <a href="https://www.instagram.com/la.cupularedovan/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.google.com/maps/place/Restaurante+La.C%C3%BApula/@38.1142925,-0.9100984" target="_blank"
+          rel="noopener">Google Maps</a>
+        <a href="tel:622474446">622 47 44 46</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
